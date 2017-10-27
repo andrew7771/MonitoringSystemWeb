@@ -36,9 +36,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\MonitoringSystem\bin\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MonitoringSystem">
-      <HintPath>..\MonitoringSystem\bin\MonitoringSystem.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />

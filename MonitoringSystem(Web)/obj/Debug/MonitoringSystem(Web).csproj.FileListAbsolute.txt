@@ -15,6 +15,8 @@ F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Moni
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\MonitoringSystem(Web).dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\MonitoringSystem(Web).pdb
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Antlr3.Runtime.dll
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\EntityFramework.dll
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\EntityFramework.SqlServer.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.Agent.Intercept.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.DependencyCollector.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -24,6 +26,7 @@ F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Micr
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.ApplicationInsights.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.Web.Infrastructure.dll
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\MonotoringSystemModel.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Newtonsoft.Json.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\System.Web.Helpers.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\System.Web.Mvc.dll
@@ -33,6 +36,9 @@ F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Syst
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\System.Web.WebPages.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\System.Web.WebPages.Razor.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\WebGrease.dll
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\MonotoringSystemModel.pdb
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\EntityFramework.xml
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\EntityFramework.SqlServer.xml
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.DependencyCollector.xml
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.ServerTelemetryChannel.xml
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonitoringSystem(Web)\bin\Microsoft.AI.Web.xml
