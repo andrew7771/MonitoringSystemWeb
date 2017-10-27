@@ -1,0 +1,12 @@
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\MonotoringSystemModel.dll.config
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\MonotoringSystemModel.dll
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\MonotoringSystemModel.pdb
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\EntityFramework.dll
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\EntityFramework.SqlServer.dll
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\System.Web.Mvc.dll
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\EntityFramework.xml
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\EntityFramework.SqlServer.xml
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\bin\Debug\System.Web.Mvc.xml
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\obj\Debug\MonitoringSystemModel.csprojResolveAssemblyReference.cache
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\obj\Debug\MonotoringSystemModel.dll
+F:\_MyProjectsGitRepository\MonitoringSystemProject\MonotoringSystemModel\obj\Debug\MonotoringSystemModel.pdb

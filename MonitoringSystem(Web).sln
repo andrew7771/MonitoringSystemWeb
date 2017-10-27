@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitoringSystem(Web)", "MonitoringSystem(Web)\MonitoringSystem(Web).csproj", "{7CCA6364-40C9-4AB0-A5D9-CCF71149FF50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitoringSystemModel", "MonotoringSystemModel\MonitoringSystemModel.csproj", "{E350EDF1-59BF-4459-AE49-0EB0C5BBA9C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CCA6364-40C9-4AB0-A5D9-CCF71149FF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCA6364-40C9-4AB0-A5D9-CCF71149FF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCA6364-40C9-4AB0-A5D9-CCF71149FF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCA6364-40C9-4AB0-A5D9-CCF71149FF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E350EDF1-59BF-4459-AE49-0EB0C5BBA9C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E350EDF1-59BF-4459-AE49-0EB0C5BBA9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E350EDF1-59BF-4459-AE49-0EB0C5BBA9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E350EDF1-59BF-4459-AE49-0EB0C5BBA9C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
