@@ -8,7 +8,7 @@ using System.Data.Entity;
 using MonitoringSystemModel;
 using MonitoringSystem_Web_.Models;
 
-namespace MonitoringSystem.Controllers
+namespace MonitoringSystem_Web_.Controllers
 {
     public partial class SubjectsWebController : Controller
     {

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using MonitoringSystemModel;
 using MonitoringSystem_Web_.Models;
 
-namespace MonitoringSystem.Controllers
+namespace MonitoringSystem_Web_.Controllers
 {
     public class SubjectCPsController : Controller
     {

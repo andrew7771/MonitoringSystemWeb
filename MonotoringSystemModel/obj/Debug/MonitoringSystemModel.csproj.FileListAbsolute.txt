@@ -14,5 +14,6 @@ F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\bin\Debu
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\bin\Debug\MonotoringSystemModel.pdb
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\bin\Debug\System.Web.Mvc.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\bin\Debug\System.Web.Mvc.xml
+F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\obj\Debug\MonitoringSystemModel.csprojResolveAssemblyReference.cache
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\obj\Debug\MonotoringSystemModel.dll
 F:\_MyProjectsGitRepository\MonitoringSystem(Web)\MonotoringSystemModel\obj\Debug\MonotoringSystemModel.pdb
