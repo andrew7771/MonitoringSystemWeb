@@ -12,7 +12,6 @@ namespace MonitoringSystemModel
     {
         public Teacher()
         {
-            Subjects = new HashSet<Subject>();
             SubjectsCPs = new HashSet<SubjectCP>();
         }
 
@@ -27,10 +26,6 @@ namespace MonitoringSystemModel
         [Required(ErrorMessage = "Введите фамилию"), Display(Name = "Фамилия учителя")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Введите научную степень"), Display(Name = "Научная степень")]
-        public string AcadDegree { get; set; }
-
-        public virtual ICollection<Subject> Subjects { get; set; }
         public virtual ICollection<SubjectCP> SubjectsCPs { get; set; }
     }
 }

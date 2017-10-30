@@ -99,15 +99,15 @@
         </tr>
     </thead>
     <tbody class="tablecontent">
-        @for (int i = 0; i < Model.studentsToShow.Count; i++)
+        @for (int i = 0; i < Model.schoolKidsToShow.Count; i++)
         {
-            <tr id=@Model.studentsToShow[i].RecordBookNumberID.ToString()>
-                <td class="name">@Model.studentsToShow[i].LastName @Model.studentsToShow[i].FirstName.Substring(0, 1). @Model.studentsToShow[i].MiddleName.Substring(0, 1)</td>
+            <tr id=@Model.schoolKidsToShow[i].SchoolKidId.ToString()>
+                <td class="name">@Model.schoolKidsToShow[i].LastName @Model.schoolKidsToShow[i].FirstName.Substring(0, 1). @Model.schoolKidsToShow[i].MiddleName.Substring(0, 1)</td>
                 @{
                     //Оценки
                     List
                     <CourseProjectLine>
-                        marks = Model.linesToShow.Where(m => m.RecordBookNumberID == Model.studentsToShow[i].RecordBookNumberID).ToList();
+                        marks = Model.linesToShow.Where(m => m.SchoolKidId == Model.schoolKidsToShow[i].SchoolKidId.ToString()).ToList();
                     if (marks.Count > 0)
                     {
                         for (int j = 0; j < Model.linesToShow.Max(l => l.LineIndex); j++)
@@ -135,8 +135,8 @@
                         }
                     }
 
-                    string studentMark = Model.studentsToShow[i].RecordBookNumberID + "_automat";
-                    string studentECTS = Model.studentsToShow[i].RecordBookNumberID + "_ECTS";
+                    string studentMark = Model.schoolKidsToShow[i].SchoolKidId + "_automat";
+                    string studentECTS = Model.schoolKidsToShow[i].SchoolKidId + "_ECTS";
                     <td class="automat">
                         <p id=@studentMark></p>
                     </td>

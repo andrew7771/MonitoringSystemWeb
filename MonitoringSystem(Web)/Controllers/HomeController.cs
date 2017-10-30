@@ -14,7 +14,7 @@ namespace MonitoringSystem_Web_.Controllers
         
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            return View(db.Classes.ToList());
         }
 
         public ActionResult About()
@@ -45,7 +45,7 @@ namespace MonitoringSystem_Web_.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Student student = db.Students.Find(RecordBookNumberID);
+            SchoolKid student = db.SchoolKids.Find(RecordBookNumberID);
 
          
             return View("SearchStudentResults", student);

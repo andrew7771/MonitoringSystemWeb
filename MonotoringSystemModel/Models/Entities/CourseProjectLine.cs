@@ -15,7 +15,7 @@ namespace MonitoringSystemModel
         public int LineIndex { get; set; }
 
         //[Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 1, IsUnique = true)]
-        public string RecordBookNumberID { get; set; }
+        public string SchoolKidId { get; set; }
 
        // [Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 2, IsUnique = true)]
         public int SubjectCP_ID { get; set; }
@@ -23,9 +23,8 @@ namespace MonitoringSystemModel
         //[Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 3, IsUnique = true)]
         public int TheMark { get; set; }
 
-        public DateTime DateOfPassing { get; set; }
 
-        public virtual Student Student { get; set; }
+        public virtual SchoolKid SchoolKid { get; set; }
         public virtual SubjectCP SubjectCP { get; set; }
     }
 }

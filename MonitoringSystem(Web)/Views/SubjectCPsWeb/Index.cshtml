@@ -17,9 +17,7 @@
         <th>
             @Html.DisplayNameFor(model => model.SubjectCPName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Term)
-        </th>
+       
         <th></th>
     </tr>
 
@@ -32,9 +30,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SubjectCPName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Term)
-            </td>
+            
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.SubjectCP_ID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.SubjectCP_ID }) |

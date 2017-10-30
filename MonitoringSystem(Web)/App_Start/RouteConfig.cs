@@ -15,24 +15,16 @@ namespace MonitoringSystem_Web_
 
             //показывает все предметы для группы
             routes.MapRoute(
-                name: "toSubjectsWeb",
-                url: "SubjectsWeb/{action}/{groupId}",
-                defaults: new { controller = "SubjectsWeb", action = "Index", groupId = UrlParameter.Optional },
-                namespaces: new string[] { "MonitoringSystem_Web_.Controllers" }
-                );
-
-            //показывает оценки для всех студентов в группе по предмету
-            routes.MapRoute(
-                name: "toMarksWeb",
-                url: "SubjectsWeb/{action}/{groupId}/{subjectId}",
-                defaults: new { controller = "SubjectsWeb", action = "Index", groupId = UrlParameter.Optional, subjectId = UrlParameter.Optional },
+                name: "toSubjectCPsWeb",
+                url: "SubjectCPsWeb/{action}/{classId}",
+                defaults: new { controller = "SubjectCPsWeb", action = "Index", classId = UrlParameter.Optional },
                 namespaces: new string[] { "MonitoringSystem_Web_.Controllers" }
                 );
 
             routes.MapRoute(
                 name: "toCPMarksWeb",
-                url: "SubjectCPsWeb/{action}/{groupId}/{subjectId}",
-                defaults: new { controller = "SubjectCPsWeb", action = "Index", groupId = UrlParameter.Optional, subjectId = UrlParameter.Optional },
+                url: "SubjectCPsWeb/{action}/{classId}/{subjectId}",
+                defaults: new { controller = "SubjectCPsWeb", action = "Index", classId = UrlParameter.Optional, subjectId = UrlParameter.Optional },
                 namespaces: new string[] { "MonitoringSystem_Web_.Controllers" }
                 );
 

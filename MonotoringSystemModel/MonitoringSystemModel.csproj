@@ -52,17 +52,8 @@
   <ItemGroup>
     <Compile Include="Models\Entities\CourseProjectLine.cs" />
     <Compile Include="Models\Entities\CPLineMaxPoint.cs" />
-    <Compile Include="Models\Entities\ForSubjects\Attendance.cs" />
-    <Compile Include="Models\Entities\ForSubjects\AttendanceDate.cs" />
-    <Compile Include="Models\Entities\ForSubjects\FreeMarkField.cs" />
-    <Compile Include="Models\Entities\ForSubjects\HomeWork.cs" />
-    <Compile Include="Models\Entities\ForSubjects\Mark.cs" />
-    <Compile Include="Models\Entities\ForSubjects\MaxPoints.cs" />
-    <Compile Include="Models\Entities\ForSubjects\Module.cs" />
-    <Compile Include="Models\Entities\ForSubjects\OneItemPoint.cs" />
-    <Compile Include="Models\Entities\ForSubjects\Subject.cs" />
-    <Compile Include="Models\Entities\Group.cs" />
-    <Compile Include="Models\Entities\Student.cs" />
+    <Compile Include="Models\Entities\Class.cs" />
+    <Compile Include="Models\Entities\SchoolKid.cs" />
     <Compile Include="Models\Entities\SubjectCP.cs" />
     <Compile Include="Models\Entities\Teacher.cs" />
     <Compile Include="Models\TotalJournalContext.cs" />

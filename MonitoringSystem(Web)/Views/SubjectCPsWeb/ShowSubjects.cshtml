@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MonitoringSystemModel.SubjectCP>
+@{
+    ViewBag.Title = "Список предметов";
+}
+
+<h2>Список предметов</h2>
+<table class="table">
+    <tr>
+        <th>Название предмета</th>
+    </tr>
+    @{
+        foreach (var subjectCP in Model)
+        {
+            <tr>
+                <td>
+                    @Html.RouteLink(subjectCP.SubjectCPName, "toCPMarksWeb",
+                                 new
+                                 {
+                                     controller = "SubjectCPsWeb",
+                                     action = "ShowMarks",
+                                     groupId = ViewBag.GroupNumber as string,
+                                     subjectId = subjectCP.SubjectCP_ID
+                                 })
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -14,9 +14,8 @@ namespace MonitoringSystemModel
         {
             CourseProjectLines = new HashSet<CourseProjectLine>();
             CPLineMaxPoints = new HashSet<CPLineMaxPoint>();
-            Students = new HashSet<Student>();
-
-            Groups = new HashSet<Group>();
+            SchoolKids = new HashSet<SchoolKid>();
+            Classes = new HashSet<Class>();
         }
 
         [Key]
@@ -25,12 +24,9 @@ namespace MonitoringSystemModel
         public virtual Teacher Teacher { get; set; }
         public string SubjectCPName { get; set; }
 
-        [Required(ErrorMessage = "Введите № семестра"), Display(Name = "№ семестра")]
-        public int Term { get; set; }
-
         public virtual ICollection<CourseProjectLine> CourseProjectLines { get; set; }
         public virtual ICollection<CPLineMaxPoint> CPLineMaxPoints { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<Group> Groups { get; set; }
+        public virtual ICollection<SchoolKid> SchoolKids { get; set; }
+        public virtual ICollection<Class> Classes { get; set; }
     }
 }

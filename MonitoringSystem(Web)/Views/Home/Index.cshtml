@@ -1,123 +1,25 @@
-﻿@model IEnumerable<MonitoringSystemModel.Group>
-@using MonitoringSystemModel
+﻿@model IEnumerable<MonitoringSystemModel.Class>
 @{
     ViewBag.Title = "Home Page";
 }
 
-@*@using (Html.BeginForm("SearchStudent", "Home"))
-    {
-        <fieldset>
-            <legend></legend>
-            <div class="form-group has-success">
-                <label class="control-label" for="inputSuccess">Поиск по № зачетки</label>
-                <input type="text" class="form-control" id="inputSuccess" name="RecordBookNumberID">
-            </div>
-           <p>
-                <input type="submit" class="btn btn-success" value="Найти" />
-            </p>
-        </fieldset>
-    }*@
-<hr />
+
 <hr />
 
-@* courseNumber/groups *@
-<p>Список групп</p>
+<p>Список классов</p>
 <table class="table">
     <tr>
         <th>
-            <p>1 Курс</p>
+            <p>Номер класса</p>
         </th>
         <th>
-            <p>2 Курс</p>
+            <p>Классный руководитель</p>
         </th>
-        <th>
-            <p>3 курс</p>
-        </th>
-        <th>
-            <p>4 курс</p>
-        </th>
-        <th>
-            <p>5 курс</p>
-        </th>
-        <th>
-            <p>6 курс</p>
-        </th>
-    </tr>
-
-
-    <tr>
-        <td>
-            @*1 course*@
-            <ul>
-                @{
-                    List<Group> course1 = Model.Where(g => g.CourseNumber == 1).ToList();
-                    foreach (var group in course1)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-
-        </td>
-        <td>
-            @*2 course*@
-            <ul>
-                @{
-                    List<Group> course2 = Model.Where(g => g.CourseNumber == 2).ToList();
-                    foreach (var group in course2)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-        </td>
-        <td>
-            @*3 course*@
-            <ul>
-                @{
-                    List<Group> course3 = Model.Where(g => g.CourseNumber == 3).ToList();
-                    foreach (var group in course3)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-        </td>
-        <td>
-            @*4 course*@
-            <ul>
-                @{
-                    List<Group> course4 = Model.Where(g => g.CourseNumber == 4).ToList();
-                    foreach (var group in course4)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-        </td>
-        <td>
-            @*5 course*@
-            <ul>
-                @{
-                    List<Group> course5 = Model.Where(g => g.CourseNumber == 5).ToList();
-                    foreach (var group in course5)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-        </td>
-        <td>
-            @*6 course*@
-            <ul>
-                @{
-                    List<Group> course6 = Model.Where(g => g.CourseNumber == 6).ToList();
-                    foreach (var group in course6)
-                    {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
-                    }
-                }
-            </ul>
-        </td>
-    </tr>
+    </tr>    
+           @{
+               foreach (var @class in Model)
+               {
+                <tr><td>@Html.RouteLink(@class.ClassID, "toSubjectCPsWeb", new { controller = "SubjectCPsWeb", action = "ShowSubjects", classId = @class.ClassID }) </td></tr>
+               }
+        }
 </table>

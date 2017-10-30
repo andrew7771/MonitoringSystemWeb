@@ -194,12 +194,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\SubjectCPsController.cs" />
-    <Compile Include="Controllers\Subjects2Controller.cs" />
-    <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Controllers\SubjectCPsWebController.cs" />
+    <Compile Include="Controllers\SubjectsWebController.cs" />
     <Compile Include="DBInitializer\TotalJournalDBInitializerPart1Seed.cs" />
     <Compile Include="DBInitializer\TotalJournalDBInitializerPart2.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,7 +204,6 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ModelList.cs" />
-    <Compile Include="Models\ModelListAttendances.cs" />
     <Compile Include="Models\ModelListSubjectCPs.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,24 +264,19 @@
     <Content Include="Views\Students\Details.cshtml" />
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
-    <Content Include="Views\SubjectCPs\Create.cshtml" />
-    <Content Include="Views\SubjectCPs\Delete.cshtml" />
-    <Content Include="Views\SubjectCPs\Details.cshtml" />
-    <Content Include="Views\SubjectCPs\Edit.cshtml" />
-    <Content Include="Views\SubjectCPs\Index.cshtml" />
-    <Content Include="Views\SubjectCPs\ShowMarks.cshtml" />
-    <Content Include="Views\SubjectsWeb\Create.cshtml" />
-    <Content Include="Views\SubjectsWeb\Delete.cshtml" />
-    <Content Include="Views\SubjectsWeb\Details.cshtml" />
-    <Content Include="Views\SubjectsWeb\Edit.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\Create.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\Delete.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\Details.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\Edit.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\Index.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\ShowMarks.cshtml" />
     <Content Include="Views\SubjectsWeb\EditAttendance.cshtml" />
-    <Content Include="Views\SubjectsWeb\Index.cshtml" />
     <Content Include="Views\SubjectsWeb\ShowMarks.cshtml" />
-    <Content Include="Views\SubjectsWeb\ShowSubjectsByCourseNumber.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\SubjectCPsWeb\ShowSubjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

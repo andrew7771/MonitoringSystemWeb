@@ -1,17 +1,16 @@
-﻿using System;
+﻿using MonitoringSystem_Web_.Models;
+using MonitoringSystemModel;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MonitoringSystemModel;
-using MonitoringSystem_Web_.Models;
 
 namespace MonitoringSystem_Web_.Controllers
 {
-    public class SubjectCPsController : Controller
+    public class SubjectCPsWebController : Controller
     {
         private TotalJournalContextWeb db = new TotalJournalContextWeb();
 
@@ -120,6 +119,19 @@ namespace MonitoringSystem_Web_.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult ShowSubjects(string classId)
+        {
+            List<SubjectCP> getSubjectCPs;
+            if (classId != null)
+            {
+                getSubjectCPs = db.SubjectCPs.ToList();
+                ViewBag.GroupNumber = classId;
+                return View(getSubjectCPs);
+            }
+            return View();
+        }
+
         public ActionResult ShowMarks(string groupId, int? subjectId)
         {
             if (groupId == null || subjectId == null)
@@ -128,11 +140,11 @@ namespace MonitoringSystem_Web_.Controllers
             }
             ModelListSubjectCPs model = new ModelListSubjectCPs()
             {
-                studentsToShow = db.Students.Where(st => st.GroupID == groupId).ToList(),
+                schoolKidsToShow = db.SchoolKids.Where(st => st.ClassID == groupId).ToList(),
                 GroupName = groupId,
                 SubjectCPId = (int)subjectId,
                 SubjectCPName = db.SubjectCPs.Find(subjectId).SubjectCPName,
-                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectCP_ID == subjectId && cpl.Student.GroupID == groupId).ToList(),
+                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectCP_ID == subjectId && cpl.SchoolKid.ClassID == groupId).ToList(),
                 cpLinesMaxPoints = db.CPLineMaxPoints.Where(cplmp => cplmp.SubjectCPID == subjectId).ToList()
             };
             return View(model);
@@ -140,10 +152,10 @@ namespace MonitoringSystem_Web_.Controllers
         public ActionResult AddCPLine(string groupId, int? subjectId)
         {
             SubjectCP subjectCP = db.SubjectCPs.Find(subjectId);
-            List<Group> groups = subjectCP.Groups.ToList();
-            Group group = db.Groups.Find(groupId);
+            List<Class> groups = subjectCP.Classes.ToList();
+            Class group = db.Classes.Find(groupId);
             int MaxLineIndex = 0, MaxCP_ID = 0, MaxCPLineMaxPointID = 0;
-            if (group.Students.Count == 0)
+            if (group.SchoolKids.Count == 0)
             {
                 ViewBag.ErrorText = "Сначала  добавьте студентов в группу!";
                 return View("Error");
@@ -152,7 +164,7 @@ namespace MonitoringSystem_Web_.Controllers
             if (db.CourseProjectLines.Count() > 0)
             {
                 MaxLineIndex = db.CourseProjectLines
-                .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.Student.GroupID == groupId)
+                .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.SchoolKid.ClassID == groupId)
                 .Max(m => m.LineIndex);
                 MaxCP_ID = db.CourseProjectLines.Max(m => m.CourseProjectLineID);
             }
@@ -163,15 +175,14 @@ namespace MonitoringSystem_Web_.Controllers
             db.CPLineMaxPoints.Add(new CPLineMaxPoint() { CPLineMaxPointID = MaxCPLineMaxPointID + 1, LineIndex = MaxLineIndex + 1, MaxPoint = 0, SubjectCPID = (int)subjectId, LineName = "Новый этап" });
             foreach (var grp in groups)
             {
-                foreach (var student in grp.Students)
+                foreach (var schoolKid in grp.SchoolKids)
                 {
                     MaxCP_ID++;
                     subjectCP.CourseProjectLines.Add(new CourseProjectLine()
                     {
                         CourseProjectLineID = MaxCP_ID,
                         LineIndex = (MaxLineIndex + 1),
-                        RecordBookNumberID = student.RecordBookNumberID,
-                        DateOfPassing = DateTime.Now,
+                        SchoolKidId = schoolKid.SchoolKidId.ToString(),
                         SubjectCP_ID = Convert.ToInt32(subjectId),
                         TheMark = 0,
                         LineName = "Новый этап"
@@ -188,7 +199,7 @@ namespace MonitoringSystem_Web_.Controllers
             if (db.CourseProjectLines.Count() > 0)
             {
                 MaxLineIndex = db.CourseProjectLines
-                                 .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.Student.GroupID == groupId)
+                                 .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.SchoolKid.ClassID == groupId)
                                  .Max(m => m.LineIndex);
             }
             if (db.CPLineMaxPoints.Count() > 0)
@@ -238,7 +249,6 @@ namespace MonitoringSystem_Web_.Controllers
                     case "lab":
                         CourseProjectLine mark = db.CourseProjectLines.Find(Convert.ToInt32(dataToSend[i].inputId));
                         mark.TheMark = Convert.ToInt32(dataToSend[i].inputvalue);
-                        mark.DateOfPassing = Convert.ToDateTime(dataToSend[i].dateOfReport);
                         break;
                     case "maxlab":
                         CPLineMaxPoint labMaxPoint = db.CPLineMaxPoints.Find(Convert.ToInt32(dataToSend[i].inputId));
