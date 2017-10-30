@@ -53,7 +53,7 @@
                     List<Group> course1 = Model.Where(g => g.CourseNumber == 1).ToList();
                     foreach (var group in course1)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
@@ -66,7 +66,7 @@
                     List<Group> course2 = Model.Where(g => g.CourseNumber == 2).ToList();
                     foreach (var group in course2)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
@@ -78,7 +78,7 @@
                     List<Group> course3 = Model.Where(g => g.CourseNumber == 3).ToList();
                     foreach (var group in course3)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
@@ -90,7 +90,7 @@
                     List<Group> course4 = Model.Where(g => g.CourseNumber == 4).ToList();
                     foreach (var group in course4)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
@@ -102,7 +102,7 @@
                     List<Group> course5 = Model.Where(g => g.CourseNumber == 5).ToList();
                     foreach (var group in course5)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
@@ -114,7 +114,7 @@
                     List<Group> course6 = Model.Where(g => g.CourseNumber == 6).ToList();
                     foreach (var group in course6)
                     {
-                        <li>@Html.RouteLink(group.GroupID, "toSubjects", new { controller = "Subjects", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
+                        <li>@Html.RouteLink(group.GroupID, "toSubjectsWeb", new { controller = "SubjectsWeb", action = "ShowSubjectsByCourseNumber", groupId = group.GroupID })</li>
                     }
                 }
             </ul>
