@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MonitoringSystemModel.SubjectCP>
+﻿@model IEnumerable<MonitoringSystemModel.Subject>
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Teacher.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubjectCPName)
+            @Html.DisplayNameFor(model => model.SubjectName)
         </th>
        
         <th></th>
@@ -32,9 +32,9 @@
             </td>
             
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SubjectCP_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SubjectCP_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SubjectCP_ID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.SubjectID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SubjectID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SubjectID })
             </td>
         </tr>
     }

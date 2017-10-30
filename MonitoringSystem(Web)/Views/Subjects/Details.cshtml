@@ -1,4 +1,4 @@
-﻿@model MonitoringSystemModel.SubjectCP
+﻿@model MonitoringSystemModel.Subject
 
 @{
     ViewBag.Title = "Details";
@@ -19,24 +19,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubjectCPName)
+            @Html.DisplayNameFor(model => model.SubjectName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SubjectCPName)
+            @Html.DisplayFor(model => model.SubjectName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Term)
-        </dd>
-
+       
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SubjectCP_ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubjectID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -8,9 +8,9 @@ using System.Web;
 namespace MonitoringSystemModel
 {
     [Table("SubjectCPs")]
-    public class SubjectCP
+    public class Subject
     {
-        public SubjectCP()
+        public Subject()
         {
             CourseProjectLines = new HashSet<CourseProjectLine>();
             CPLineMaxPoints = new HashSet<CPLineMaxPoint>();
@@ -19,10 +19,10 @@ namespace MonitoringSystemModel
         }
 
         [Key]
-        public int SubjectCP_ID { get; set; }
+        public int SubjectID { get; set; }
         public int TeacherID { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public string SubjectCPName { get; set; }
+        public string SubjectName { get; set; }
 
         public virtual ICollection<CourseProjectLine> CourseProjectLines { get; set; }
         public virtual ICollection<CPLineMaxPoint> CPLineMaxPoints { get; set; }

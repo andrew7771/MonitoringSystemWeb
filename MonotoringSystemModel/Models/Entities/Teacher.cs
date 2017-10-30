@@ -12,7 +12,7 @@ namespace MonitoringSystemModel
     {
         public Teacher()
         {
-            SubjectsCPs = new HashSet<SubjectCP>();
+            Subjects = new HashSet<Subject>();
         }
 
         public int TeacherID { get; set; }
@@ -26,6 +26,6 @@ namespace MonitoringSystemModel
         [Required(ErrorMessage = "Введите фамилию"), Display(Name = "Фамилия учителя")]
         public string LastName { get; set; }
 
-        public virtual ICollection<SubjectCP> SubjectsCPs { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

@@ -53,14 +53,14 @@
             @Html.ActionLink(" ", "AddCPLine", new
        {
            groupId = Model.GroupName,
-           subjectId = Model.SubjectCPId
+           subjectId = Model.SubjectId
        }, new { @class = "glyphicon glyphicon-plus" })
         </div>
         <div class="remove">
             @Html.ActionLink(" ", "RemoveCPLine", new
       {
           groupId = Model.GroupName,
-          subjectId = Model.SubjectCPId
+          subjectId = Model.SubjectId
       }, new { @class = "glyphicon glyphicon-minus" })
         </div>
 
@@ -120,11 +120,7 @@
                                     <td class="lab">
                                         <div class="point-normal">
                                             <input type="number" class="student-point" id=@currentLabId value=@marks[j].TheMark.ToString() />
-                                        </div>
-                                        <div class="date-process-hidden">
-                                            <label>Дата: </label>
-                                            <input type="date" class="point-date-of-report" value=@marks[j].DateOfPassing.ToString("yyyy-MM-dd") />
-                                        </div>
+                                        </div>                                        
                                     </td>
                                 }
                             }

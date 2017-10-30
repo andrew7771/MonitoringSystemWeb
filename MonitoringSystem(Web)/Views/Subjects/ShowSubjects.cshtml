@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MonitoringSystemModel.SubjectCP>
+﻿@model IEnumerable<MonitoringSystemModel.Subject>
 @{
     ViewBag.Title = "Список предметов";
 }
@@ -13,13 +13,13 @@
         {
             <tr>
                 <td>
-                    @Html.RouteLink(subjectCP.SubjectCPName, "toCPMarksWeb",
+                    @Html.RouteLink(subjectCP.SubjectName, "toMarks",
                                  new
                                  {
-                                     controller = "SubjectCPsWeb",
+                                     controller = "Subjects",
                                      action = "ShowMarks",
                                      groupId = ViewBag.GroupNumber as string,
-                                     subjectId = subjectCP.SubjectCP_ID
+                                     subjectId = subjectCP.SubjectID
                                  })
                 </td>
             </tr>

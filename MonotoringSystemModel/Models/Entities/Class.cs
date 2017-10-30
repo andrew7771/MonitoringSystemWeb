@@ -13,14 +13,14 @@ namespace MonitoringSystemModel
         public Class()
         {
             SchoolKids = new HashSet<SchoolKid>();
-            SubjectCPs = new HashSet<SubjectCP>();
+            SubjectCPs = new HashSet<Subject>();
         }
 
         [Display(Name = "Номер класса"), Required(ErrorMessage = "Введите номер класса")]
         public string ClassID { get; set; }
 
         public virtual ICollection<SchoolKid> SchoolKids { get; set; }
-        public virtual ICollection<SubjectCP> SubjectCPs { get; set; }
+        public virtual ICollection<Subject> SubjectCPs { get; set; }
     }
 
     

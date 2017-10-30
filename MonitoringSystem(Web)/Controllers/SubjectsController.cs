@@ -10,14 +10,14 @@ using System.Web.Mvc;
 
 namespace MonitoringSystem_Web_.Controllers
 {
-    public class SubjectCPsWebController : Controller
+    public class SubjectsController : Controller
     {
         private TotalJournalContextWeb db = new TotalJournalContextWeb();
 
         // GET: SubjectCPs
         public ActionResult Index()
         {
-            var subjectCPs = db.SubjectCPs.Include(s => s.Teacher);
+            var subjectCPs = db.Subjects.Include(s => s.Teacher);
             return View(subjectCPs.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace MonitoringSystem_Web_.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubjectCP subjectCP = db.SubjectCPs.Find(id);
+            Subject subjectCP = db.Subjects.Find(id);
             if (subjectCP == null)
             {
                 return HttpNotFound();
@@ -48,17 +48,17 @@ namespace MonitoringSystem_Web_.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SubjectCP_ID,TeacherID,SubjectCPName,Term")] SubjectCP subjectCP)
+        public ActionResult Create([Bind(Include = "SubjectCP_ID,TeacherID,SubjectCPName,Term")] Subject subject)
         {
             if (ModelState.IsValid)
             {
-                db.SubjectCPs.Add(subjectCP);
+                db.Subjects.Add(subject);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TeacherID = new SelectList(db.Teachers, "TeacherID", "FirstName", subjectCP.TeacherID);
-            return View(subjectCP);
+            ViewBag.TeacherID = new SelectList(db.Teachers, "TeacherID", "FirstName", subject.TeacherID);
+            return View(subject);
         }
 
         // GET: SubjectCPs/Edit/5
@@ -68,7 +68,7 @@ namespace MonitoringSystem_Web_.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubjectCP subjectCP = db.SubjectCPs.Find(id);
+            Subject subjectCP = db.Subjects.Find(id);
             if (subjectCP == null)
             {
                 return HttpNotFound();
@@ -82,16 +82,16 @@ namespace MonitoringSystem_Web_.Controllers
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SubjectCP_ID,TeacherID,SubjectCPName,Term")] SubjectCP subjectCP)
+        public ActionResult Edit([Bind(Include = "SubjectCP_ID,TeacherID,SubjectCPName,Term")] Subject subject)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subjectCP).State = EntityState.Modified;
+                db.Entry(subject).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TeacherID = new SelectList(db.Teachers, "TeacherID", "FirstName", subjectCP.TeacherID);
-            return View(subjectCP);
+            ViewBag.TeacherID = new SelectList(db.Teachers, "TeacherID", "FirstName", subject.TeacherID);
+            return View(subject);
         }
 
         // GET: SubjectCPs/Delete/5
@@ -101,7 +101,7 @@ namespace MonitoringSystem_Web_.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SubjectCP subjectCP = db.SubjectCPs.Find(id);
+            Subject subjectCP = db.Subjects.Find(id);
             if (subjectCP == null)
             {
                 return HttpNotFound();
@@ -114,18 +114,18 @@ namespace MonitoringSystem_Web_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SubjectCP subjectCP = db.SubjectCPs.Find(id);
-            db.SubjectCPs.Remove(subjectCP);
+            Subject subject = db.Subjects.Find(id);
+            db.Subjects.Remove(subject);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult ShowSubjects(string classId)
         {
-            List<SubjectCP> getSubjectCPs;
+            List<Subject> getSubjectCPs;
             if (classId != null)
             {
-                getSubjectCPs = db.SubjectCPs.ToList();
+                getSubjectCPs = db.Subjects.ToList();
                 ViewBag.GroupNumber = classId;
                 return View(getSubjectCPs);
             }
@@ -142,16 +142,17 @@ namespace MonitoringSystem_Web_.Controllers
             {
                 schoolKidsToShow = db.SchoolKids.Where(st => st.ClassID == groupId).ToList(),
                 GroupName = groupId,
-                SubjectCPId = (int)subjectId,
-                SubjectCPName = db.SubjectCPs.Find(subjectId).SubjectCPName,
-                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectCP_ID == subjectId && cpl.SchoolKid.ClassID == groupId).ToList(),
-                cpLinesMaxPoints = db.CPLineMaxPoints.Where(cplmp => cplmp.SubjectCPID == subjectId).ToList()
+                SubjectId = (int)subjectId,
+                SubjectCPName = db.Subjects.Find(subjectId).SubjectName,
+                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectID == subjectId && cpl.SchoolKid.ClassID == groupId).ToList(),
+                cpLinesMaxPoints = db.CPLineMaxPoints.Where(cplmp => cplmp.SubjectID == subjectId).ToList()
             };
             return View(model);
         }
+
         public ActionResult AddCPLine(string groupId, int? subjectId)
         {
-            SubjectCP subjectCP = db.SubjectCPs.Find(subjectId);
+            Subject subjectCP = db.Subjects.Find(subjectId);
             List<Class> groups = subjectCP.Classes.ToList();
             Class group = db.Classes.Find(groupId);
             int MaxLineIndex = 0, MaxCP_ID = 0, MaxCPLineMaxPointID = 0;
@@ -164,7 +165,7 @@ namespace MonitoringSystem_Web_.Controllers
             if (db.CourseProjectLines.Count() > 0)
             {
                 MaxLineIndex = db.CourseProjectLines
-                .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.SchoolKid.ClassID == groupId)
+                .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == groupId)
                 .Max(m => m.LineIndex);
                 MaxCP_ID = db.CourseProjectLines.Max(m => m.CourseProjectLineID);
             }
@@ -172,7 +173,7 @@ namespace MonitoringSystem_Web_.Controllers
             {
                 MaxCPLineMaxPointID = db.CPLineMaxPoints.Max(m => m.CPLineMaxPointID);
             }
-            db.CPLineMaxPoints.Add(new CPLineMaxPoint() { CPLineMaxPointID = MaxCPLineMaxPointID + 1, LineIndex = MaxLineIndex + 1, MaxPoint = 0, SubjectCPID = (int)subjectId, LineName = "Новый этап" });
+            db.CPLineMaxPoints.Add(new CPLineMaxPoint() { CPLineMaxPointID = MaxCPLineMaxPointID + 1, LineIndex = MaxLineIndex + 1, MaxPoint = 0, SubjectID = (int)subjectId, LineName = "Новый этап" });
             foreach (var grp in groups)
             {
                 foreach (var schoolKid in grp.SchoolKids)
@@ -183,7 +184,7 @@ namespace MonitoringSystem_Web_.Controllers
                         CourseProjectLineID = MaxCP_ID,
                         LineIndex = (MaxLineIndex + 1),
                         SchoolKidId = schoolKid.SchoolKidId.ToString(),
-                        SubjectCP_ID = Convert.ToInt32(subjectId),
+                        SubjectID = Convert.ToInt32(subjectId),
                         TheMark = 0,
                         LineName = "Новый этап"
                     });
@@ -199,17 +200,17 @@ namespace MonitoringSystem_Web_.Controllers
             if (db.CourseProjectLines.Count() > 0)
             {
                 MaxLineIndex = db.CourseProjectLines
-                                 .Where(m => m.SubjectCP.SubjectCP_ID == subjectId && m.SchoolKid.ClassID == groupId)
+                                 .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == groupId)
                                  .Max(m => m.LineIndex);
             }
             if (db.CPLineMaxPoints.Count() > 0)
             {
                 MaxCPLineMaxPointID = db.CPLineMaxPoints.Max(m => m.LineIndex);
-                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == MaxCPLineMaxPointID && m.SubjectCPID == subjectId));
+                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == MaxCPLineMaxPointID && m.SubjectID == subjectId));
             }
             if (db.CourseProjectLines.Count() > 0)
             {
-                db.CourseProjectLines.RemoveRange(db.CourseProjectLines.Where(m => m.LineIndex == MaxLineIndex && m.SubjectCP_ID == subjectId));
+                db.CourseProjectLines.RemoveRange(db.CourseProjectLines.Where(m => m.LineIndex == MaxLineIndex && m.SubjectID == subjectId));
             }
 
             db.SaveChanges();
@@ -220,13 +221,13 @@ namespace MonitoringSystem_Web_.Controllers
         {
             int indexOfLastSlash = url.LastIndexOf('/');
             int subjectId = Convert.ToInt32(url.Substring(indexOfLastSlash + 1));
-            List<CPLineMaxPoint> cpLineMaxPoints = db.CPLineMaxPoints.Where(cpl => cpl.SubjectCPID == subjectId).ToList();
+            List<CPLineMaxPoint> cpLineMaxPoints = db.CPLineMaxPoints.Where(cpl => cpl.SubjectID == subjectId).ToList();
             foreach (CPLineMaxPoint cpLineMaxPoint in cpLineMaxPoints)
             {
                 if (cpLineMaxPoint.LineIndex == Convert.ToInt32(index))
                     cpLineMaxPoint.LineName = value;
             }
-            List<CourseProjectLine> cpLines = db.CourseProjectLines.Where(cpl => cpl.SubjectCP_ID == subjectId).ToList();
+            List<CourseProjectLine> cpLines = db.CourseProjectLines.Where(cpl => cpl.SubjectID == subjectId).ToList();
             foreach (CourseProjectLine cpLine in cpLines)
             {
                 if (cpLine.LineIndex == Convert.ToInt32(index))

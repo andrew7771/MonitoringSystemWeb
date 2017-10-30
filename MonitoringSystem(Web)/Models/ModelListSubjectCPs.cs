@@ -13,6 +13,6 @@ namespace MonitoringSystem_Web_.Models
         public List<CPLineMaxPoint> cpLinesMaxPoints { get; set; }
         public string GroupName { get; set; }
         public string SubjectCPName { get; set; }
-        public int SubjectCPId { get; set; }
+        public int SubjectId { get; set; }
     }
 }

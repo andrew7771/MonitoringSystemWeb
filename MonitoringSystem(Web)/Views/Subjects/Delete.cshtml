@@ -1,4 +1,4 @@
-﻿@model MonitoringSystemModel.SubjectCP
+﻿@model MonitoringSystemModel.Subject
 
 @{
     ViewBag.Title = "Delete";
@@ -20,19 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubjectCPName)
+            @Html.DisplayNameFor(model => model.SubjectName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SubjectCPName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Term)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Term)
+            @Html.DisplayFor(model => model.SubjectName)
         </dd>
 
     </dl>

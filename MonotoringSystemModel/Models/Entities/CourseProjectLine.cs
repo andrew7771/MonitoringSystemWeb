@@ -18,13 +18,13 @@ namespace MonitoringSystemModel
         public string SchoolKidId { get; set; }
 
        // [Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 2, IsUnique = true)]
-        public int SubjectCP_ID { get; set; }
+        public int SubjectID { get; set; }
 
         //[Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 3, IsUnique = true)]
         public int TheMark { get; set; }
 
 
         public virtual SchoolKid SchoolKid { get; set; }
-        public virtual SubjectCP SubjectCP { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

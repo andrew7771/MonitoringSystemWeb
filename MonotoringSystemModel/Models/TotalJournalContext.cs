@@ -11,7 +11,7 @@ namespace MonitoringSystemModel
         public virtual DbSet<SchoolKid> SchoolKids { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }        
 
-        public virtual DbSet<SubjectCP> SubjectCPs { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
 
         public virtual DbSet<CourseProjectLine> CourseProjectLines { get; set; }
         public virtual DbSet<CPLineMaxPoint> CPLineMaxPoints { get; set; }

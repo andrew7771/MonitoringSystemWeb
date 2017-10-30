@@ -19,7 +19,7 @@
            @{
                foreach (var @class in Model)
                {
-                <tr><td>@Html.RouteLink(@class.ClassID, "toSubjectCPsWeb", new { controller = "SubjectCPsWeb", action = "ShowSubjects", classId = @class.ClassID }) </td></tr>
+                <tr><td>@Html.RouteLink(@class.ClassID, "toSubjects", new { controller = "Subjects", action = "ShowSubjects", classId = @class.ClassID }) </td></tr>
                }
         }
 </table>
