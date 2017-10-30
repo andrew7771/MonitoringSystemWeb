@@ -7,9 +7,9 @@ using System.Data.Entity;
 
 namespace MonitoringSystem_Web_.DBInitializer
 {
-    public partial class TotalJournalDBInitializer : DropCreateDatabaseAlways<TotalJournalContext>
+    public partial class TotalJournalDBInitializer : DropCreateDatabaseAlways<TotalJournalContextWeb>
     {
-        protected override void Seed(TotalJournalContext context)
+        protected override void Seed(TotalJournalContextWeb context)
         {
             GroupInit(ref context);
             #region studentsInit 

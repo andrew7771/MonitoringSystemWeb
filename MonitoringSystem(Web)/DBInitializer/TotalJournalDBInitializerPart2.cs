@@ -7,9 +7,9 @@ using System.Data.Entity;
 
 namespace MonitoringSystem_Web_.DBInitializer
 {
-    public partial class TotalJournalDBInitializer : DropCreateDatabaseAlways<TotalJournalContext>
+    public partial class TotalJournalDBInitializer : DropCreateDatabaseAlways<TotalJournalContextWeb>
     {
-        protected void GroupInit(ref TotalJournalContext context)
+        protected void GroupInit(ref TotalJournalContextWeb context)
         {
             //номер группы           номер курса
             context.Groups.Add(new Group() { GroupID = "611п", CourseNumber = 1 });
@@ -24,11 +24,11 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.Groups.Add(new Group() { GroupID = "642п", CourseNumber = 4 });
             context.Groups.Add(new Group() { GroupID = "631пст", CourseNumber = 4 });
         }
-        protected void StudentInit(ref TotalJournalContext context)
+        protected void StudentInit(ref TotalJournalContextWeb context)
         {
 
         }
-        //protected void StudentInit(ref TotalJournalContext context)
+        //protected void StudentInit(ref TotalJournalContextWeb context)
         //{
         //    //                                  номер зачетки                   имя                  фамилия             отчество
         //    context.Students.Add(new Student() { RecordBookNumberID = "436001", FirstName = "Катерина", LastName = "Андрющенко", MiddleName = "Сергеевна", GroupID = "641п"});
@@ -94,7 +94,7 @@ namespace MonitoringSystem_Web_.DBInitializer
         //    context.Students.Add(new Student() { RecordBookNumberID = "436059", FirstName = "Ярослав", LastName = "Яскевич", MiddleName = "Витальевич", GroupID = "631пст" });
 
         //}
-        protected void SubjectInit(ref TotalJournalContext context)
+        protected void SubjectInit(ref TotalJournalContextWeb context)
         {
             //List<Student> students4 = new List<Student>
             //{
@@ -206,7 +206,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             //context.Students.AddRange(students4);
             //context.Subjects.AddRange(subjects);
         }
-        protected void TeacherInit(ref TotalJournalContext context)
+        protected void TeacherInit(ref TotalJournalContextWeb context)
         {
             ////                                  TeachersID++    
             context.Teachers.Add(new Teacher() { TeacherID = 1, FirstName = "Павел", MiddleName = "Александрович", LastName = "Лучшев", AcadDegree = " к.т.н.,доцент" });
@@ -233,7 +233,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.Teachers.Add(new Teacher() { TeacherID = 22, FirstName = "Борис", MiddleName = "Михайлович", LastName = "Конорев", AcadDegree = "д.т.н.,профессор" });
 
         }
-        protected void MarkInit(ref TotalJournalContext context)
+        protected void MarkInit(ref TotalJournalContextWeb context)
         {
             //// оценки
             context.Marks.Add(new Mark() { MarkID = 1, LabNumber = 1, RecordBookNumberID = "436001", TheMark = 5, SubjectID = 35, DateOfProgram = DateTime.Now.Date, DateOfReport = DateTime.Now.Date, });
@@ -290,7 +290,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.Marks.Add(new Mark() { MarkID = 35, LabNumber = 2, RecordBookNumberID = "436003", TheMark = 4, SubjectID = 33, DateOfProgram = DateTime.Now.Date, DateOfReport = DateTime.Now.Date, });
             context.Marks.Add(new Mark() { MarkID = 36, LabNumber = 3, RecordBookNumberID = "436003", TheMark = 3, SubjectID = 33, DateOfProgram = DateTime.Now.Date, DateOfReport = DateTime.Now.Date, });
         }
-        protected void AttendanceInit(ref TotalJournalContext context)
+        protected void AttendanceInit(ref TotalJournalContextWeb context)
         {
             //context.Attendances.Add(new Attendance() {AttendanceID=1, RecordBookNumberID ="436001", SubjectID = 35, ClassDate= DateTime.Now.Date, IsVisited = true });
             //context.Attendances.Add(new Attendance() { AttendanceID = 2, RecordBookNumberID = "436001", SubjectID = 35, ClassDate = DateTime.Now.Date, IsVisited = false });
@@ -345,7 +345,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             //context.Attendances.Add(new Attendance() { AttendanceID = 36, RecordBookNumberID = "436003", SubjectID = 33, ClassDate = DateTime.Now.Date, IsVisited = true });
 
         }
-        protected void ModuleInit(ref TotalJournalContext context)
+        protected void ModuleInit(ref TotalJournalContextWeb context)
         {
             context.Modules.Add(new Module() { ModuleID = 1, SubjectID = 35, RecordBookNumberID = "436001", ModulePoint = 10, ModuleNumber = 1, });
             context.Modules.Add(new Module() { ModuleID = 2, SubjectID = 32, RecordBookNumberID = "436001", ModulePoint = 8, ModuleNumber = 1 });
@@ -362,7 +362,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.Modules.Add(new Module() { ModuleID = 11, SubjectID = 34, RecordBookNumberID = "436003", ModulePoint = 10, ModuleNumber = 1 });
             context.Modules.Add(new Module() { ModuleID = 12, SubjectID = 34, RecordBookNumberID = "436003", ModulePoint = 9, ModuleNumber = 1 });
         }
-        protected void SubjectCPInit(ref TotalJournalContext context)
+        protected void SubjectCPInit(ref TotalJournalContextWeb context)
         {
             context.SubjectCPs.Add(new SubjectCP() { SubjectCP_ID = 1, SubjectCPName = "Основы программирования(КП)", Term = 3, TeacherID = 1, });
             context.SubjectCPs.Add(new SubjectCP() { SubjectCP_ID = 2, SubjectCPName = "Объектно-ориентированное программирование(КП)", Term = 4, TeacherID = 1 });
@@ -371,7 +371,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.SubjectCPs.Add(new SubjectCP() { SubjectCP_ID = 5, SubjectCPName = "Базы данных(КП)", Term = 7, TeacherID = 1 });
             context.SubjectCPs.Add(new SubjectCP() { SubjectCP_ID = 6, SubjectCPName = "Проектирование распределенных систем ЭВМ(КП)", Term = 8, TeacherID = 1 });
         }
-        protected void CourseProjectLineInit(ref TotalJournalContext context)
+        protected void CourseProjectLineInit(ref TotalJournalContextWeb context)
         {
             context.CourseProjectLines.Add(new CourseProjectLine() { CourseProjectLineID = 1, RecordBookNumberID = "436001", SubjectCP_ID = 6, LineName = "Постановка задачи", TheMark = 5, DateOfPassing = DateTime.Now, LineIndex = 1 });
             context.CourseProjectLines.Add(new CourseProjectLine() { CourseProjectLineID = 2, RecordBookNumberID = "436002", SubjectCP_ID = 6, LineName = "Постановка задачи", TheMark = 4, DateOfPassing = DateTime.Now, LineIndex = 1 });
@@ -382,7 +382,7 @@ namespace MonitoringSystem_Web_.DBInitializer
             context.CourseProjectLines.Add(new CourseProjectLine() { CourseProjectLineID = 5, RecordBookNumberID = "436005", SubjectCP_ID = 6, LineName = "Постановка задачи", TheMark = 5, DateOfPassing = DateTime.Now, LineIndex = 1 });
             context.CourseProjectLines.Add(new CourseProjectLine() { CourseProjectLineID = 6, RecordBookNumberID = "436006", SubjectCP_ID = 6, LineName = "Постановка задачи", TheMark = 5, DateOfPassing = DateTime.Now, LineIndex = 1 });
         }
-        protected void HomeWorkInit(ref TotalJournalContext context)
+        protected void HomeWorkInit(ref TotalJournalContextWeb context)
         {
             context.HomeWorks.Add(new HomeWork() { HomeWorkID = 1, RecordBookNumberID = "436001", HWNumber = 1, HWPoint = 11, SubjectID = 35, DateOfProgram = DateTime.Now, DateOfReport = DateTime.Now });
             context.HomeWorks.Add(new HomeWork() { HomeWorkID = 2, RecordBookNumberID = "436001", HWNumber = 1, HWPoint = 12, SubjectID = 32, DateOfProgram = DateTime.Now, DateOfReport = DateTime.Now });

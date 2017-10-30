@@ -19,11 +19,13 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                @using (Html.BeginForm("SearchStudent", "Home", FormMethod.Post, new { @class = "navbar-form navbar-left", @role = "search" }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Введите № зачетки" name="RecordBookNumberID">
+                    </div>
+                    <button type="submit" class="btn btn-default">Найти</button>
+                }
             </div>
         </div>
     </div>

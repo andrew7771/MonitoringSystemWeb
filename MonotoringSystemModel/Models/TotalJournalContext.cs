@@ -2,10 +2,10 @@
 
 namespace MonitoringSystemModel
 {
-    public class TotalJournalContext : DbContext
+    public class TotalJournalContextWeb : DbContext
     {
-        public TotalJournalContext() 
-            : base("name=TotalJournalContext") {}
+        public TotalJournalContextWeb() 
+            : base("name=TotalJournalContextWeb") {}
 
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Student> Students { get; set; }
