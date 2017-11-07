@@ -152,7 +152,7 @@ namespace MonitoringSystem_Web_.Controllers
             return View(model);
         }
 
-        public ActionResult AddCPLine(string classId, int? subjectId)
+        public ActionResult AddCpLine(string classId, int? subjectId)
         {
             Subject subject = db.Subjects.Find(subjectId);
             List<Class> classes = subject.Classes.ToList();
@@ -167,19 +167,14 @@ namespace MonitoringSystem_Web_.Controllers
                 return View("Error");
             }
 
-            var c1 = db.CourseProjectLines.Count();
-            var l = db.CourseProjectLines.ToList();
-            var l1 = db.CourseProjectLines.Where(m => m.Subject.SubjectID == subjectId/* && m.SchoolKid.ClassID == classId*/).ToList();
-            var sch = db.SchoolKids.Where(s => s.Class.ClassID == classId).ToList();
-
-            if (db.CourseProjectLines.Count() > 0)
+           if (db.CourseProjectLines.Any())
             {
                 maxLineIndex = db.CourseProjectLines
                 .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == classId)
                 .Max(m => m.LineIndex);
                 maxId = db.CourseProjectLines.Max(m => m.CourseProjectLineID);
             }
-            if (db.CPLineMaxPoints.Count() > 0)
+            if (db.CPLineMaxPoints.Any())
             {
                 maxCpLineMaxPointId = db.CPLineMaxPoints.Max(m => m.CPLineMaxPointID);
             }
@@ -200,31 +195,29 @@ namespace MonitoringSystem_Web_.Controllers
                         TheMark = 0,
                         LineName = "Новый этап"
                     });
-                    //db.Entry(subject).State = EntityState.Added;
-                    db.SaveChanges();
                 }
             }
             db.SaveChanges();
             return RedirectToAction(GetUrl("ShowMarks", classId, Convert.ToInt32(subjectId)));
         }
 
-        public ActionResult RemoveCPLine(string classId, int? subjectId)
+        public ActionResult RemoveCpLine(string classId, int? subjectId)
         {
-            int MaxLineIndex = 0, MaxCPLineMaxPointID = 0;
-            if (db.CourseProjectLines.Count() > 0)
+            int maxLineIndex = 0, maxCpLineMaxPointId = 0;
+            if (db.CourseProjectLines.Any())
             {
-                MaxLineIndex = db.CourseProjectLines
+                maxLineIndex = db.CourseProjectLines
                                  .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == classId)
                                  .Max(m => m.LineIndex);
             }
-            if (db.CPLineMaxPoints.Count() > 0)
+            if (db.CPLineMaxPoints.Any())
             {
-                MaxCPLineMaxPointID = db.CPLineMaxPoints.Max(m => m.LineIndex);
-                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == MaxCPLineMaxPointID && m.SubjectID == subjectId));
+                maxCpLineMaxPointId = db.CPLineMaxPoints.Max(m => m.LineIndex);
+                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == maxCpLineMaxPointId && m.SubjectID == subjectId));
             }
-            if (db.CourseProjectLines.Count() > 0)
+            if (db.CourseProjectLines.Any())
             {
-                db.CourseProjectLines.RemoveRange(db.CourseProjectLines.Where(m => m.LineIndex == MaxLineIndex && m.SubjectID == subjectId));
+                db.CourseProjectLines.RemoveRange(db.CourseProjectLines.Where(m => m.LineIndex == maxLineIndex && m.SubjectID == subjectId));
             }
 
             db.SaveChanges();
@@ -247,7 +240,7 @@ namespace MonitoringSystem_Web_.Controllers
                 if (cpLine.LineIndex == Convert.ToInt32(index))
                     cpLine.LineName = value;
             }
-            int indexOfSubject = url.IndexOf("SubjectCPs");
+            int indexOfSubject = url.IndexOf("Subjects", StringComparison.Ordinal);
             url = url.Substring(indexOfSubject);
 
             db.SaveChanges();

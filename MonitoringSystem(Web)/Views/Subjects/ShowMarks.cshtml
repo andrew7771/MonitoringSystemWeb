@@ -40,9 +40,9 @@
     }
 </style>
 @{
-    ViewBag.Title = Model.ClassName + ", " + Model.SubjectName;
+    ViewBag.Title = Model.ClassName + " Класс, " + Model.SubjectName;
 }
-<h2 class="group-info">@Model.ClassName, @Model.SubjectName</h2>
+<h2 class="group-info">@Model.ClassName Класс, @Model.SubjectName</h2>
 <div class="wrapper">
     <div id="toggles">
         <input type="checkbox" name="checkbox1" id="checkbox-date-to-mark" class="ios-toggle" checked="checked" />
@@ -50,18 +50,18 @@
     </div>
     <div class="btn-group-wrapper">
         <div class="add">
-            @Html.ActionLink(" ", "AddCPLine", new
-       {
-           classId = Model.ClassName,
-           subjectId = Model.SubjectId
-       }, new { @class = "glyphicon glyphicon-plus" })
+            @Html.ActionLink(" ", "AddCpLine", new
+            {
+                classId = Model.ClassName,
+                subjectId = Model.SubjectId
+            }, new { @class = "glyphicon glyphicon-plus" })
         </div>
         <div class="remove">
-            @Html.ActionLink(" ", "RemoveCPLine", new
-      {
-          classId = Model.ClassName,
-          subjectId = Model.SubjectId
-      }, new { @class = "glyphicon glyphicon-minus" })
+            @Html.ActionLink(" ", "RemoveCpLine", new
+            {
+                classId = Model.ClassName,
+                subjectId = Model.SubjectId
+            }, new { @class = "glyphicon glyphicon-minus" })
         </div>
 
     </div>
@@ -69,7 +69,7 @@
 <table class="table table-bordered table-hover" border="1" cellspacing="0">
     <thead>
         <tr class="line-names">
-            <th id="group=name">@Model.ClassName</th>
+            <th id="group=name">@Model.ClassName Класс</th>
             @{
                 foreach (CPLineMaxPoint cpLineMaxPoint in Model.cpLinesMaxPoints)
                 {
