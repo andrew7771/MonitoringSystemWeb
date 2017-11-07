@@ -7,12 +7,11 @@ using System.Web;
 
 namespace MonitoringSystemModel
 {
-    [Table("SchoolKids")]
     public class SchoolKid
     {
         public SchoolKid()
         {            
-            SubjectCPs = new HashSet<Subject>();
+            Subjects = new HashSet<Subject>();
         }
 
         [Key]
@@ -30,6 +29,6 @@ namespace MonitoringSystemModel
         [Required(ErrorMessage = "Введите фамилию"), Display(Name = "Фамилия ученика")]
         public string LastName { get; set; }
        
-        public virtual ICollection<Subject> SubjectCPs { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

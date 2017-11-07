@@ -11,8 +11,8 @@ namespace MonitoringSystem_Web_.Models
         public List<SchoolKid> schoolKidsToShow { get; set; }
         public List<CourseProjectLine> linesToShow { get; set; }
         public List<CPLineMaxPoint> cpLinesMaxPoints { get; set; }
-        public string GroupName { get; set; }
-        public string SubjectCPName { get; set; }
+        public string ClassName { get; set; }
+        public string SubjectName { get; set; }
         public int SubjectId { get; set; }
     }
 }

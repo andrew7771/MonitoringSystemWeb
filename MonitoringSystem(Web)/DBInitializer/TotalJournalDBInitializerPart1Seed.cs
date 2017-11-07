@@ -7,12 +7,12 @@ using System.Data.Entity;
 
 namespace MonitoringSystem_Web_.DBInitializer
 {
-    public partial class TotalJournalDBInitializer : DropCreateDatabaseAlways<TotalJournalContextWeb>
+    public partial class TotalJournalDBInitializer 
     {
         protected override void Seed(TotalJournalContextWeb context)
         {
             ClassInit(ref context);
-            #region studentsInit 
+            #region schoolkidsInit 
             List<SchoolKid> schoolKids = new List<SchoolKid>
             {
                 new SchoolKid() { SchoolKidId = 1, FirstName = "Катерина", LastName = "Андрющенко", MiddleName = "Сергеевна", ClassID = "1", },
@@ -126,88 +126,36 @@ namespace MonitoringSystem_Web_.DBInitializer
             subjects.ForEach(s => context.Subjects.Add(s));
             context.SaveChanges();
             #endregion subInit
-            //foreach (var subject in context.Subjects)
-            //{
-            //    foreach (var group in context.Classes)
-            //    {
-            //        if (subject.Term == 7 || subject.Term == 8)
-            //        {
-            //            if (group.CourseNumber == 4)
-            //            {
-            //                subject.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subject.Term == 5 || subject.Term == 6)
-            //        {
-            //            if (group.CourseNumber == 3)
-            //            {
-            //                subject.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subject.Term == 3 || subject.Term == 4)
-            //        {
-            //            if (group.CourseNumber == 2)
-            //            {
-            //                subject.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subject.Term == 1 || subject.Term == 2)
-            //        {
-            //            if (group.CourseNumber == 1)
-            //            {
-            //                subject.Classes.Add(group);
-            //            }
-            //        }
-            //    }
-            //}
-            //context.SaveChanges();
+            Class @class = context.Classes.Find("1");
+            for (int i = 0; i < 5; i++)
+            {
+                context.Subjects.ToArray()[i].Classes.Add(@class);
+            }
 
-            //List<SubjectCP> subjectCPs = new List<SubjectCP>()
-            //{
-            //    new SubjectCP() { SubjectCP_ID = 1, SubjectCPName = "Основы программирования(КП)", Term = 3, TeacherID = 1, Classes = new List<Class>() },
-            //    new SubjectCP() { SubjectCP_ID = 2, SubjectCPName = "Объектно-ориентированное программирование(КП)", Term = 4, TeacherID = 1, Classes = new List<Class>() },
-            //    new SubjectCP() { SubjectCP_ID = 3, SubjectCPName = "Алгоритмы и структуры данных(КП)", Term = 5, TeacherID = 1, Classes = new List<Class>() },
-            //    new SubjectCP() { SubjectCP_ID = 4, SubjectCPName = "Операционные системы(КП)", Term = 6, TeacherID = 1, Classes = new List<Class>() },
-            //    new SubjectCP() { SubjectCP_ID = 5, SubjectCPName = "Базы данных(КП)", Term = 7, TeacherID = 1 , Classes = new List<Class>()},
-            //    new SubjectCP() { SubjectCP_ID = 6, SubjectCPName = "Проектирование распределенных систем ЭВМ(КП)", Term = 8, TeacherID = 1, Classes = new List<Class>() }
-            //};
-            //subjectCPs.ForEach(s => context.SubjectCPs.Add(s));
-            //context.SaveChanges();
-            //foreach (var subjectCP in context.SubjectCPs)
-            //{
-            //    foreach (var group in context.Classes)
-            //    {
-            //        if (subjectCP.Term == 7 || subjectCP.Term == 8)
-            //        {
-            //            if (group.CourseNumber == 4)
-            //            {
-            //                subjectCP.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subjectCP.Term == 5 || subjectCP.Term == 6)
-            //        {
-            //            if (group.CourseNumber == 3)
-            //            {
-            //                subjectCP.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subjectCP.Term == 3 || subjectCP.Term == 4)
-            //        {
-            //            if (group.CourseNumber == 2)
-            //            {
-            //                subjectCP.Classes.Add(group);
-            //            }
-            //        }
-            //        if (subjectCP.Term == 1 || subjectCP.Term == 2)
-            //        {
-            //            if (group.CourseNumber == 1)
-            //            {
-            //                subjectCP.Classes.Add(group);
-            //            }
-            //        }
-            //    }
-            //}
-            //context.SaveChanges();
+            @class = context.Classes.Find("2");
+            for (int i = 5; i < 10; i++)
+            {
+                context.Subjects.ToArray()[i].Classes.Add(@class);
+            }
+
+            @class = context.Classes.Find("3");
+            for (int i = 10; i < 15; i++)
+            {
+                context.Subjects.ToArray()[i].Classes.Add(@class);
+            }
+
+            @class = context.Classes.Find("4");
+            for (int i = 15; i < 20; i++)
+            {
+                context.Subjects.ToArray()[i].Classes.Add(@class);
+            }
+
+            @class = context.Classes.Find("5");
+            for (int i = 20; i < 25; i++)
+            {
+                context.Subjects.ToArray()[i].Classes.Add(@class);
+            }            
+            context.SaveChanges();
 
             //MarkInit(ref context);
             //SubjectCPInit(ref context);
@@ -236,5 +184,4 @@ namespace MonitoringSystem_Web_.DBInitializer
             base.Seed(context);
         }
     }
-
 }

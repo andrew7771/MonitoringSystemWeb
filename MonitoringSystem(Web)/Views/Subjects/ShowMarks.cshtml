@@ -40,9 +40,9 @@
     }
 </style>
 @{
-    ViewBag.Title = Model.GroupName + ", " + Model.SubjectCPName;
+    ViewBag.Title = Model.ClassName + ", " + Model.SubjectName;
 }
-<h2 class="group-info">@Model.GroupName, @Model.SubjectCPName</h2>
+<h2 class="group-info">@Model.ClassName, @Model.SubjectName</h2>
 <div class="wrapper">
     <div id="toggles">
         <input type="checkbox" name="checkbox1" id="checkbox-date-to-mark" class="ios-toggle" checked="checked" />
@@ -52,14 +52,14 @@
         <div class="add">
             @Html.ActionLink(" ", "AddCPLine", new
        {
-           groupId = Model.GroupName,
+           classId = Model.ClassName,
            subjectId = Model.SubjectId
        }, new { @class = "glyphicon glyphicon-plus" })
         </div>
         <div class="remove">
             @Html.ActionLink(" ", "RemoveCPLine", new
       {
-          groupId = Model.GroupName,
+          classId = Model.ClassName,
           subjectId = Model.SubjectId
       }, new { @class = "glyphicon glyphicon-minus" })
         </div>
@@ -69,7 +69,7 @@
 <table class="table table-bordered table-hover" border="1" cellspacing="0">
     <thead>
         <tr class="line-names">
-            <th id="group=name">@Model.GroupName</th>
+            <th id="group=name">@Model.ClassName</th>
             @{
                 foreach (CPLineMaxPoint cpLineMaxPoint in Model.cpLinesMaxPoints)
                 {
@@ -107,7 +107,7 @@
                     //Оценки
                     List
                     <CourseProjectLine>
-                        marks = Model.linesToShow.Where(m => m.SchoolKidId == Model.schoolKidsToShow[i].SchoolKidId.ToString()).ToList();
+                        marks = Model.linesToShow.Where(m => m.SchoolKidId == Model.schoolKidsToShow[i].SchoolKidId).ToList();
                     if (marks.Count > 0)
                     {
                         for (int j = 0; j < Model.linesToShow.Max(l => l.LineIndex); j++)

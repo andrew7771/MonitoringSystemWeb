@@ -6,7 +6,6 @@ using System.Web;
 
 namespace MonitoringSystemModel
 {
-    [Table("CourseProjectLines")]
     public class CourseProjectLine
     {
         public int CourseProjectLineID { get; set; }
@@ -15,7 +14,7 @@ namespace MonitoringSystemModel
         public int LineIndex { get; set; }
 
         //[Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 1, IsUnique = true)]
-        public string SchoolKidId { get; set; }
+        public int SchoolKidId { get; set; }
 
        // [Index("IX_RecordBookNumberIDSubjectCP_IDTheMark", 2, IsUnique = true)]
         public int SubjectID { get; set; }

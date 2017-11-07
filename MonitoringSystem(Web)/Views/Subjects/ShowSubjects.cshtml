@@ -9,17 +9,17 @@
         <th>Название предмета</th>
     </tr>
     @{
-        foreach (var subjectCP in Model)
+        foreach (var subject in Model)
         {
             <tr>
                 <td>
-                    @Html.RouteLink(subjectCP.SubjectName, "toMarks",
+                    @Html.RouteLink(subject.SubjectName, "toMarks",
                                  new
                                  {
                                      controller = "Subjects",
                                      action = "ShowMarks",
-                                     groupId = ViewBag.GroupNumber as string,
-                                     subjectId = subjectCP.SubjectID
+                                     classId = ViewBag.ClassNumber as string,
+                                     subjectId = subject.SubjectID
                                  })
                 </td>
             </tr>

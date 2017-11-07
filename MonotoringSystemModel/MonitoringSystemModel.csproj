@@ -54,7 +54,7 @@
     <Compile Include="Models\Entities\CPLineMaxPoint.cs" />
     <Compile Include="Models\Entities\Class.cs" />
     <Compile Include="Models\Entities\SchoolKid.cs" />
-    <Compile Include="Models\Entities\SubjectCP.cs" />
+    <Compile Include="Models\Entities\Subject.cs" />
     <Compile Include="Models\Entities\Teacher.cs" />
     <Compile Include="Models\TotalJournalContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

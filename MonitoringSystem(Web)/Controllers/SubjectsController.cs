@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -122,85 +123,98 @@ namespace MonitoringSystem_Web_.Controllers
 
         public ActionResult ShowSubjects(string classId)
         {
-            List<Subject> getSubjectCPs;
+            List<Subject> subjects;
             if (classId != null)
             {
-                getSubjectCPs = db.Subjects.ToList();
-                ViewBag.GroupNumber = classId;
-                return View(getSubjectCPs);
+                subjects = db.Classes.Find(classId).Subjects.ToList();
+                
+                ViewBag.ClassNumber = classId;
+                return View(subjects);
             }
             return View();
         }
 
-        public ActionResult ShowMarks(string groupId, int? subjectId)
+        public ActionResult ShowMarks(string classId, int? subjectId)
         {
-            if (groupId == null || subjectId == null)
+            if (classId == null || subjectId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ModelListSubjectCPs model = new ModelListSubjectCPs()
             {
-                schoolKidsToShow = db.SchoolKids.Where(st => st.ClassID == groupId).ToList(),
-                GroupName = groupId,
+                schoolKidsToShow = db.SchoolKids.Where(st => st.ClassID == classId).ToList(),
+                ClassName = classId,
                 SubjectId = (int)subjectId,
-                SubjectCPName = db.Subjects.Find(subjectId).SubjectName,
-                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectID == subjectId && cpl.SchoolKid.ClassID == groupId).ToList(),
+                SubjectName = db.Subjects.Find(subjectId).SubjectName,
+                linesToShow = db.CourseProjectLines.Where(cpl => cpl.SubjectID == subjectId && cpl.SchoolKid.Class.ClassID == classId).ToList(),
                 cpLinesMaxPoints = db.CPLineMaxPoints.Where(cplmp => cplmp.SubjectID == subjectId).ToList()
             };
             return View(model);
         }
 
-        public ActionResult AddCPLine(string groupId, int? subjectId)
+        public ActionResult AddCPLine(string classId, int? subjectId)
         {
-            Subject subjectCP = db.Subjects.Find(subjectId);
-            List<Class> groups = subjectCP.Classes.ToList();
-            Class group = db.Classes.Find(groupId);
-            int MaxLineIndex = 0, MaxCP_ID = 0, MaxCPLineMaxPointID = 0;
-            if (group.SchoolKids.Count == 0)
+            Subject subject = db.Subjects.Find(subjectId);
+            List<Class> classes = subject.Classes.ToList();
+            Class @class = db.Classes.Find(classId);
+            int maxLineIndex = 0,
+                maxId = 0,
+                maxCpLineMaxPointId = 0;
+
+            if (@class != null && @class.SchoolKids.Count == 0)
             {
                 ViewBag.ErrorText = "Сначала  добавьте студентов в группу!";
                 return View("Error");
             }
 
+            var c1 = db.CourseProjectLines.Count();
+            var l = db.CourseProjectLines.ToList();
+            var l1 = db.CourseProjectLines.Where(m => m.Subject.SubjectID == subjectId/* && m.SchoolKid.ClassID == classId*/).ToList();
+            var sch = db.SchoolKids.Where(s => s.Class.ClassID == classId).ToList();
+
             if (db.CourseProjectLines.Count() > 0)
             {
-                MaxLineIndex = db.CourseProjectLines
-                .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == groupId)
+                maxLineIndex = db.CourseProjectLines
+                .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == classId)
                 .Max(m => m.LineIndex);
-                MaxCP_ID = db.CourseProjectLines.Max(m => m.CourseProjectLineID);
+                maxId = db.CourseProjectLines.Max(m => m.CourseProjectLineID);
             }
             if (db.CPLineMaxPoints.Count() > 0)
             {
-                MaxCPLineMaxPointID = db.CPLineMaxPoints.Max(m => m.CPLineMaxPointID);
+                maxCpLineMaxPointId = db.CPLineMaxPoints.Max(m => m.CPLineMaxPointID);
             }
-            db.CPLineMaxPoints.Add(new CPLineMaxPoint() { CPLineMaxPointID = MaxCPLineMaxPointID + 1, LineIndex = MaxLineIndex + 1, MaxPoint = 0, SubjectID = (int)subjectId, LineName = "Новый этап" });
-            foreach (var grp in groups)
+
+            db.CPLineMaxPoints.Add(new CPLineMaxPoint() { CPLineMaxPointID = maxCpLineMaxPointId + 1, LineIndex = maxLineIndex + 1, MaxPoint = 0, SubjectID = (int)subjectId, LineName = "Новый этап" });
+
+            foreach (var cls in classes)
             {
-                foreach (var schoolKid in grp.SchoolKids)
+                foreach (var schoolKid in cls.SchoolKids)
                 {
-                    MaxCP_ID++;
-                    subjectCP.CourseProjectLines.Add(new CourseProjectLine()
+                    maxId++;
+                    subject.CourseProjectLines.Add(new CourseProjectLine()
                     {
-                        CourseProjectLineID = MaxCP_ID,
-                        LineIndex = (MaxLineIndex + 1),
-                        SchoolKidId = schoolKid.SchoolKidId.ToString(),
-                        SubjectID = Convert.ToInt32(subjectId),
+                        CourseProjectLineID = maxId,
+                        LineIndex = (maxLineIndex + 1),
+                        SchoolKidId = schoolKid.SchoolKidId,
+                        SubjectID = (int)subjectId,
                         TheMark = 0,
                         LineName = "Новый этап"
                     });
+                    //db.Entry(subject).State = EntityState.Added;
+                    db.SaveChanges();
                 }
             }
             db.SaveChanges();
-            return RedirectToAction(GetUrl("ShowMarks", groupId, Convert.ToInt32(subjectId)));
+            return RedirectToAction(GetUrl("ShowMarks", classId, Convert.ToInt32(subjectId)));
         }
 
-        public ActionResult RemoveCPLine(string groupId, int? subjectId)
+        public ActionResult RemoveCPLine(string classId, int? subjectId)
         {
             int MaxLineIndex = 0, MaxCPLineMaxPointID = 0;
             if (db.CourseProjectLines.Count() > 0)
             {
                 MaxLineIndex = db.CourseProjectLines
-                                 .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == groupId)
+                                 .Where(m => m.Subject.SubjectID == subjectId && m.SchoolKid.ClassID == classId)
                                  .Max(m => m.LineIndex);
             }
             if (db.CPLineMaxPoints.Count() > 0)
@@ -214,7 +228,7 @@ namespace MonitoringSystem_Web_.Controllers
             }
 
             db.SaveChanges();
-            return RedirectToAction(GetUrl("ShowMarks", groupId, Convert.ToInt32(subjectId)));
+            return RedirectToAction(GetUrl("ShowMarks", classId, Convert.ToInt32(subjectId)));
         }
         [HttpPost]
         public ActionResult SaveLineName(string value, string index, string url)
@@ -271,10 +285,10 @@ namespace MonitoringSystem_Web_.Controllers
                 data[i].inputId = data[i].inputId.Substring(0, ceparatorIndex);
             }
         }
-        protected string GetUrl(string action, string groupId, int? subjectId)
+        protected string GetUrl(string action, string classId, int? subjectId)
         {
             string url = string.Empty;
-            url = action + "/" + groupId + "/" + subjectId.ToString();
+            url = action + "/" + classId + "/" + subjectId.ToString();
             return url;
         }
         protected override void Dispose(bool disposing)

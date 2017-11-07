@@ -7,7 +7,6 @@ using System.Web;
 
 namespace MonitoringSystemModel
 {
-    [Table("SubjectCPs")]
     public class Subject
     {
         public Subject()
