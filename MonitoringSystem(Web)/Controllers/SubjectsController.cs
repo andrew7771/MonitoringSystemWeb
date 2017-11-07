@@ -203,7 +203,7 @@ namespace MonitoringSystem_Web_.Controllers
 
         public ActionResult RemoveCpLine(string classId, int? subjectId)
         {
-            int maxLineIndex = 0, maxCpLineMaxPointId = 0;
+            int maxLineIndex = 0, maxCpLineMaxPointLineIndex = 0;
             if (db.CourseProjectLines.Any())
             {
                 maxLineIndex = db.CourseProjectLines
@@ -212,8 +212,9 @@ namespace MonitoringSystem_Web_.Controllers
             }
             if (db.CPLineMaxPoints.Any())
             {
-                maxCpLineMaxPointId = db.CPLineMaxPoints.Max(m => m.LineIndex);
-                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == maxCpLineMaxPointId && m.SubjectID == subjectId));
+                maxCpLineMaxPointLineIndex = db.CPLineMaxPoints.Max(m => m.LineIndex);
+                //db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == maxCpLineMaxPointId && m.SubjectID == subjectId));
+                db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.LineIndex == maxCpLineMaxPointLineIndex && m.SubjectID == subjectId));
             }
             if (db.CourseProjectLines.Any())
             {
@@ -267,10 +268,11 @@ namespace MonitoringSystem_Web_.Controllers
                 }
                 db.SaveChanges();
             }
-            string url = dataToSend[dataToSend.Count - 1].inputId.Substring(dataToSend[dataToSend.Count - 1].inputId.IndexOf("ShowMarks"));
+            string url = dataToSend[dataToSend.Count - 1].inputId.Substring(dataToSend[dataToSend.Count - 1].inputId.IndexOf("ShowMarks", StringComparison.Ordinal));
             return RedirectToAction(url);
         }
-        public void GetIDs(ref List<TemplateToMarks> data)
+
+        private void GetIDs(ref List<TemplateToMarks> data)
         {
             for (int i = 0; i < data.Count - 1; i++)
             {
@@ -278,7 +280,8 @@ namespace MonitoringSystem_Web_.Controllers
                 data[i].inputId = data[i].inputId.Substring(0, ceparatorIndex);
             }
         }
-        protected string GetUrl(string action, string classId, int? subjectId)
+
+        private string GetUrl(string action, string classId, int? subjectId)
         {
             string url = string.Empty;
             url = action + "/" + classId + "/" + subjectId.ToString();
