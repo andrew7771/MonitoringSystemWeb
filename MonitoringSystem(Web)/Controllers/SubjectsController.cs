@@ -213,7 +213,6 @@ namespace MonitoringSystem_Web_.Controllers
             if (db.CPLineMaxPoints.Any())
             {
                 maxCpLineMaxPointLineIndex = db.CPLineMaxPoints.Max(m => m.LineIndex);
-                //db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.CPLineMaxPointID == maxCpLineMaxPointId && m.SubjectID == subjectId));
                 db.CPLineMaxPoints.RemoveRange(db.CPLineMaxPoints.Where(m => m.LineIndex == maxCpLineMaxPointLineIndex && m.SubjectID == subjectId));
             }
             if (db.CourseProjectLines.Any())

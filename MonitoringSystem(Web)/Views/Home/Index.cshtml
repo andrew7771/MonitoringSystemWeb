@@ -2,10 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-
 <hr />
-
 <p>Список классов</p>
 <table class="table">
     <tr>
@@ -19,7 +16,7 @@
            @{
                foreach (var @class in Model)
                {
-                <tr><td>@Html.RouteLink(@class.ClassID, "toSubjects", new { controller = "Subjects", action = "ShowSubjects", classId = @class.ClassID }) </td></tr>
+                <tr><td>@Html.RouteLink(@class.ClassID + " Класс", "toSubjects", new { controller = "Subjects", action = "ShowSubjects", classId = @class.ClassID }) </td></tr>
                }
         }
 </table>

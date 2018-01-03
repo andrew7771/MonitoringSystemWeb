@@ -1,9 +1,5 @@
-﻿using MonitoringSystemModel;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MonitoringSystem_Web_.Models
 {
@@ -22,6 +18,4 @@ namespace MonitoringSystem_Web_.Models
         [JsonProperty("dateOfProgram")]
         public DateTime dateOfProgram { get; set; }
     }
-
-    
 }
